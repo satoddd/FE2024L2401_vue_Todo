@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>jaekfh</title>
+    <link rel="stylesheet" href="./css/style.css">
   </head>
   <body>
     <div id="app">
@@ -28,11 +29,43 @@
                   <p class="todo-title">incomplete items</p>
                   <ul class="todo-area">
                     <li 
-                    v-for="(item,i) in todos"
+                    v-for="(item,i) in incompleteTodo"
                     :key="i"
                     class="list"
                     >
                   <span class="list-label">{{item.text}}</span>
+                  <span class="button-area">
+                    <button 
+                    class="list-button button-done"
+                    @click="toggleIsDone(item.id)"
+                    >Done</button>
+                    <button
+                    class="list-button button-delete"
+                    @click="deleteTodo(item.id)"
+                    >DELETE</button>
+                  </span>
+                  </li>
+                  </ul>
+                </div>
+                <div class="area-complete">
+                  <p class="todo-title">complete items</p>
+                  <ul class="todo-area">
+                    <li 
+                    v-for="(item,i) in doneTodo"
+                    :key="i"
+                    class="list"
+                    >
+                  <span class="list-label">{{item.text}}</span>
+                  <span class="button-area">
+                    <button 
+                    class="list-button"
+                    @click="toggleIsDone(item.id)"
+                    >RETURN</button>
+                    <button
+                    class="list-button button-delete"
+                    @click="deleteTodo(item.id)"
+                    >DELETE</button>
+                  </span>
                   </li>
                   </ul>
                 </div>

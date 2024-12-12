@@ -26,6 +26,27 @@ new Vue({
     //resetTextメソッドを追加
     resetText(){
       this.text = '';
+    },
+    deleteTodo(id) {
+      const index = this.getIndexBy(id);
+      this.todos.spllice(index,1);
+    },
+    toggleIsDone(id) {
+      const index = this.getIndexBy(id);
+      this.todos[index].isDone = !this.todos[index].isDone;
+    },
+    getIndexBy(id){
+      const filteredTodo = this.todos.filter(todo => todo.id === id)[0];
+      const index = this.todos.indexOf(filteredTodo);
+      return index;
+    }
+  },
+  computed: {
+    doneTodo() {
+      return this.todos.filter( todo => todo.isDone === true);
+    },
+    incompleteTodo(){
+      return this.todos.filter( todo => todo.isDone === false );
     }
   }
 });
